@@ -50,10 +50,11 @@ def get_json(url, num):
 在搜索结果的第一页，我们可以从JSON里读取总职位数，按照每页15个职位，获得要爬取的页数。再使用循环按页爬取，将职位信息汇总，输出为CSV格式。
 
 **程序运行如下：**
-
+![运行结果](https://github.com/nicksors/JobAnalysis/blob/master/images/count_info.png)
 
 
 **抓取结果如下：**
+![抓取结果](https://github.com/nicksors/JobAnalysis/blob/master/images/count_results.png)
 
 
 ## 4、数据可视化画图展示
@@ -61,11 +62,14 @@ def get_json(url, num):
 ### 4.1 根据薪资制作直方图
 
 薪资比例描述和可视化出图
-    
+![薪资描述](https://github.com/nicksors/JobAnalysis/blob/master/images/Salary.png)
+![薪资直方图](https://github.com/nicksors/JobAnalysis/blob/master/images/histogram.png)    
+
 
 根据上面的出图信息我们能知道，Python开发的薪资范围大概在15k-25k居多，也有20%在30k以上，最高能到60k左右每月，所以发展前景开始非常好滴！还犹豫什么？赶紧入坑吧！从此走上人生巅峰，迎接白富美指日可待，哈哈。
 
 ### 4.2 根据岗位地域分布制作饼图
+![饼图](https://github.com/nicksors/JobAnalysis/blob/master/images/pie_chart.png)
 
 
 
@@ -75,6 +79,7 @@ def get_json(url, num):
 
 将职位福利这一列数据进行汇总，按照词语出现的频率生成云词实现Python可视化，以下是原图和云词图对比：刻间五险一金、六险一金、团队气氛、弹性工作、发展空间好等字眼出现的平率最高。（你看到“周末双休”了么？说明要想高薪，少休息多努力哈！）
 
+![词云](https://github.com/nicksors/JobAnalysis/blob/master/images/word_cloud.png)
 
 
 ## 5、结论报告
