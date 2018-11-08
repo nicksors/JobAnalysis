@@ -19,6 +19,7 @@
 
 ## 3、数据抓取
 使用Chrome打开拉钩网站，在网站输入“Python开发”职位，使用“检查”功能查看网页源码。发现拉钩有反爬机制，职位信息并不在源代码里，而是在JSON文件里，因此直接通过JSON获取数据即可。
+![拉钩页面分析](https://github.com/nicksors/JobAnalysis/blob/master/images/lagou_page.png)
 
 
 
