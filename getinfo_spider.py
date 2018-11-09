@@ -89,7 +89,7 @@ def main():
         time.sleep(30)
     # 将总数据转化为data frame再输出
     df = pd.DataFrame(data=total_info, columns=['公司全名','公司简称','公司规模','融资阶段','区域','职位名称','工作经验','学历要求','工资','职位福利'])
-    df.to_csv('lagou_jobs.csv', index=False)
+    df.to_csv('./JobPosition/lagou_jobs.csv', index=False)
     print('已保存为csv文件.')
 
 if __name__ == "__main__":

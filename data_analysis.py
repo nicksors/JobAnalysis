@@ -26,8 +26,9 @@ filename = 'Python开发'
 # filename = '运维开发工程师'
 # filename = 'lagou_jobs'
 # df = pd.read_csv('lagou_jobs.csv', encoding='utf-8')
-df = pd.read_csv(filename + '.csv', encoding='utf-8')
-
+df = pd.read_csv('./JobPosition/'+filename + '.csv', encoding='utf-8')
+# print('./JobPosition/'+filename + '.csv')
+# sys.exit()
 # 2、计算薪水, 将字符串转化为列表, 再取区间的前25%, 比较贴近现实, 由于CSV文件内的数据是字符串形式,先用正则表达式将字符串转化为列表
 pattern = '\d+'
 df['salary'] = df['工资'].str.findall(pattern)
@@ -76,7 +77,7 @@ cut_text = ' '.join(jieba.cut(text)) # 字符串分词
 cloud = WordCloud(
        font_path='Arial Unicode.ttf',
        background_color='white', # 背景设置成(white)白色
-       mask=imread('cloud.jpg'), #设置背景图
+       mask=imread('./images/cloud.jpg'), #设置背景图
        max_words=1000,
        max_font_size=100
        )
