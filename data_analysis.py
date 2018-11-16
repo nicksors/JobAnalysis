@@ -22,20 +22,22 @@ mpl.rcParams['axes.unicode_minus'] = False # 解决保存图像是负号'-'显�
 filename = '运维工程师'
 filename = 'dba'
 filename = 'Python开发工程师'
-filename = 'Python开发'
+# filename = 'Python开发'
 # filename = '运维开发工程师'
 # filename = 'lagou_jobs'
 # df = pd.read_csv('lagou_jobs.csv', encoding='utf-8')
 df = pd.read_csv('./JobPosition/'+filename + '.csv', encoding='utf-8')
 # print('./JobPosition/'+filename + '.csv')
-# sys.exit()
+
 # 2、计算薪水, 将字符串转化为列表, 再取区间的前25%, 比较贴近现实, 由于CSV文件内的数据是字符串形式,先用正则表达式将字符串转化为列表
 pattern = '\d+'
 df['salary'] = df['工资'].str.findall(pattern)
 
 avg_salary = []
 for k in df['salary']:
+    # 将薪资列转换成数字整型
     int_list = [int(n) for n in k]
+    # [18, 20] 通过int_list[1]:20除以4 = 25%的薪资，然后将这25%的结果与list[0]:18相加，得到最低数加上25%的薪资结果
     avg_wage = int_list[0]+(int_list[1]-int_list[0])/4
     avg_salary.append(avg_wage)
 df['月工资'] = avg_salary
@@ -45,8 +47,8 @@ df.to_csv('draft.csv', index=False)
 print('岗位工资描述：\n{}'.format(df['月工资'].describe()))
 
 # '''
-# 3、绘制频率直方图并保存
-plt.hist(df['月工资'], bins = 12) # bins指定画多大的格子
+# 3、绘制薪资直方图并保存
+plt.hist(df['月工资'], bins = 12) # bins指定 显示的颗粒浓度
 plt.xlabel('工资 (千元)')
 plt.ylabel('次数')
 plt.title(filename + "工资直方图")

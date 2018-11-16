@@ -12,23 +12,20 @@ import pandas as pd
 import time
 import sys
 
-def get_json(url, num): # 接收两个参数：地址、页数
+def get_json(url, page_num): # 接收两个参数：地址、页数
     '''从网页获取JSON,使用POST请求,加上头部信息'''
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36',
         'Host': 'www.lagou.com',
-       'Referer':'https://www.lagou.com/jobs/list_python%E5%BC%80%E5%8F%91?labelWords=&fromSearch=true&suginput=',
+        'Referer':'https://www.lagou.com/jobs/list_python%E5%BC%80%E5%8F%91?labelWords=&fromSearch=true&suginput=',
         'X-Anit-Forge-Code': '0',
-       'X-Anit-Forge-Token': 'None',
-       'X-Requested-With': 'XMLHttpRequest'
+        'X-Anit-Forge-Token': 'None',
+        'X-Requested-With': 'XMLHttpRequest'
     }
 
-    data = {
-        'first': 'true',
-        'pn': num,
-        'kd': 'Python开发'}
+    data = {'first': 'true', 'pn': page_num, 'kd': 'Python开发'}
     res = requests.post(url, headers=headers, data=data)
-    res.raise_for_status()
+    res.raise_for_status()  # 如果请求错误，则抛出错误代码
     res.encoding = 'utf-8'
     # 得到包含职位信息的字典
     page = res.json()
@@ -36,7 +33,7 @@ def get_json(url, num): # 接收两个参数：地址、页数
 
 
 def get_page_num(count):
-    '''''计算要抓取的页数'''
+    '''计算要抓取的页数'''
     # 每页15个职位,向上取整
     res = math.ceil(count/15)
     # 拉勾网最多显示30页结果
@@ -47,7 +44,7 @@ def get_page_num(count):
 
 
 def get_page_info(jobs_list):
-    '''''对一个网页的职位信息进行解析,返回列表'''
+    '''对一个网页的职位信息进行解析,返回列表'''
     page_info_list = []
     for i in jobs_list:
         job_info = []
@@ -73,11 +70,11 @@ def main():
     total_count = page_one['content']['positionResult']['totalCount']
     # 2.1 根据总的职位数，根据每页15个职位数分割，最后得到请求的次数
     num = get_page_num(total_count)
-    total_info = []   # 存储所有抓取的数据
     # 2.2 第一次请求后暂停20秒，防止被封；
     time.sleep(20)
     print('职位总数:{},页数:{}'.format(total_count, num))
 
+    total_info = []  # 存储所有抓取的数据
     for n in range(1, num+1):
         # 对每个网页读取JSON, 获取每页数据
         page = get_json(url, n)
