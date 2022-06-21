@@ -5,7 +5,7 @@ idna==2.7
 jieba==0.39
 kiwisolver==1.0.1
 matplotlib==3.0.1
-numpy==1.15.4
+numpy==1.22.0
 pandas==0.23.4
 Pillow==5.3.0
 pyparsing==2.3.0
